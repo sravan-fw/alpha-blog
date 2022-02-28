@@ -1,0 +1,8 @@
+#Runs every week day at 10:00 AM 
+my_first_job:
+  cron: "0 10 * * 1-5"
+  class: "HardWorker"
+  queue: default
+
+
+  #*/1 * * * *

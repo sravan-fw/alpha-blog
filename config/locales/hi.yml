@@ -1,0 +1,35 @@
+hi:
+  hello: "नमस्ते"
+  global:
+    home:
+      nav:
+        bloggers: "ब्लॉगर"
+        signup: "साइन अप करें!"
+        articles: "सामग्री"
+        category: "श्रेणी"
+        login: "लॉग इन करें"
+        logout: "लॉग आउट"
+        view_articles: "लेख देखें"
+        create_new_article: "नया लेख बनाएं"
+        create_new_category: "नई श्रेणी बनाएं"
+        view_categories: "श्रेणियां देखें"
+        search: "तलाशी"
+    forms:
+      messages:
+        errors:
+          one: "निम्न त्रुटि ने %{op} को सहेजे जाने से रोक दिया"
+          other: "निम्न त्रुटियों ने %{op} को सहेजे जाने से रोक दिया"
+  activerecord:
+    attributes:
+      sign_in:
+        username: "उपयोगकर्ता नाम"
+        email: "ईमेल"
+        password: "पासवर्ड"
+        signin: "साइन इन करें"
+        login: "लॉग इन करें"
+        signup: "साइन अप करें"
+    errors:
+      messages:
+        blank: "खाली नहीं हो सकता"
+        invalid: "अमान्य"
+        too_short: "बहुत छोटा"   

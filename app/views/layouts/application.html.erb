@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Myapp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="d-flex flex-column">
+  <%= render 'layouts/navigation' %>
+  <div class="container">
+    <% flash.each do |name, msg| -%>
+      <div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
+        <%= content_tag :div, msg, class: name %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end -%>
+  </div>
+  <div id="page-content">
+    <%= yield %>
+  </div>
+  <%= render 'layouts/footer' %>
+</body>
+</html>

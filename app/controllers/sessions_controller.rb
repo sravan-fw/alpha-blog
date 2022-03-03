@@ -4,7 +4,8 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-		user = User.find_by(email: params[:session][:email].downcase)
+		# user = User.find_by(email: params[:session][:email].downcase) #safe to use as well
+		user = User.find_by_email(params[:session][:email].downcase) # avoid sql injection by using sql injection
 		if(user && user.authenticate(params[:session][:password]))
 			session[:user_id] = user.id
 			flash[:notice] = "Login Successful"

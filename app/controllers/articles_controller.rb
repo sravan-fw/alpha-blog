@@ -62,7 +62,7 @@ class ArticlesController < ApplicationController
   end 
 
   def set_article
-    @article=Article.find(params[:id])
+    @article=Article.find_by_id(params[:id])
   end
 
   def require_same_user

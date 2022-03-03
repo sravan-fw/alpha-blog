@@ -1,6 +1,9 @@
 class CategoriesController < ApplicationController
 
 	before_action :require_admin_user, except: [:show,:index]
+  before_action :set_category, only: [:show, :edit, :update] 
+
+
 	
 	def new
 		@category = Category.new
@@ -21,17 +24,14 @@ class CategoriesController < ApplicationController
 		@categories = Category.all
 	end
 
-	def show
-		@category = Category.find(params[:id])
+	def show	
 		@articles = @category.articles
 	end
 
 	def edit
-		@category = Category.find(params[:id])
 	end
 
 	def update
-		@category = Category.find(params[:id])
 		if @category.update(category_params)
 			flash[:notice] = "Category updated successfully"
 			redirect_to @category
@@ -52,6 +52,10 @@ class CategoriesController < ApplicationController
 			flash[:alert] = "Only admins can perform this action"
 			redirect_to categories_path
 		end
+	end
+
+	def set_category
+		@category = Category.find_by_id(params[:id])
 	end
 
 

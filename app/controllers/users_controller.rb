@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
 
-	before_action :set_user, only: [:show, :edit, :update, :destroy]
+	before_action :set_user, only: [:show, :edit, :update, :destroy, :following, :followers]
 	before_action :require_user, only: [:edit, :update, :following, :followers]
 	before_action :require_same_user, only: [:edit, :update, :destroy]
 
 	def index
-		@users=User.all
+		@users = User.all
 	end
 
 	def show	
@@ -43,7 +43,8 @@ class UsersController < ApplicationController
 	end
 
  def destroy
-	@user.destroy
+	# @user.destroy
+	UserDeletionJob.perform_later @user
 	session[:user_id] = nil if current_user == @user
 	flash[:notice] = "Account and associated articles are deleted successfully"
 	redirect_to root_path
@@ -51,14 +52,12 @@ class UsersController < ApplicationController
 
  def following
  	@title = "Following"
- 	@user = User.find(params[:id])
  	@users = @user.following
  	render 'show_follow'
  end
 
  def followers
  	@title = "Followers"
- 	@user = User.find(params[:id])
  	@users = @user.followers
  	render 'show_follow'
 
@@ -73,7 +72,7 @@ class UsersController < ApplicationController
 	end
 
 	def set_user
-		@user = User.find(params[:id])
+		@user = User.find_by_id(params[:id]) #avoid sql injection by using attribute based finders
 	end
 
 	def require_same_user

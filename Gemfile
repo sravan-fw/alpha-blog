@@ -35,6 +35,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'rspec-rails', '~> 3.9.1'
 end
 
 group :development do
@@ -60,12 +61,8 @@ gem 'redis-rails'
 
 gem 'bootstrap', '~> 5.1.3'
 
-# group :test do
-#   gem 'minitest-spec-rails'
-# end
+gem "brakeman"
 
+gem 'newrelic_rpm'
 
-group :development, :test do
-  gem 'rspec-rails', '~> 3.9.1'
-end
 
